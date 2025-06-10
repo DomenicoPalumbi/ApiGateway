@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: docenti-endpoints
+          uri: http://localhost:8080  # Servizio docenti
+          predicates:
+            - Path=/docenti/**
+
+        - id: discenti-endpoints
+          uri: http://localhost:8080  # Servizio discenti
+          predicates:
+            - Path=/discenti/**
+
+
+        - id: corsi-endpoints
+          uri: http://localhost:8081 # Servizio corsi
+          predicates:
+            - Path=/corsi/**
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
