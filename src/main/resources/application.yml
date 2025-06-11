@@ -8,23 +8,28 @@ spring:
     gateway:
       routes:
         - id: docenti-endpoints
-          uri: http://localhost:8080  # Servizio docenti
+          uri: http://localhost:8080
           predicates:
-            - Path=/docenti/**
+            - Path=/admin/docenti/**
+          filters:
+            - StripPrefix=1
 
         - id: discenti-endpoints
-          uri: http://localhost:8080  # Servizio discenti
+          uri: http://localhost:8080
           predicates:
-            - Path=/discenti/**
-
+            - Path=/admin/discenti/**
+          filters:
+            - StripPrefix=1
 
         - id: corsi-endpoints
-          uri: http://localhost:8081 # Servizio corsi
+          uri: http://localhost:8081
           predicates:
-            - Path=/corsi/**
-
+            - Path=/admin/corsi/**
+          filters:
+            - StripPrefix=1
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     reactor.netty: DEBUG
+    org.springframework.security: DEBUG
