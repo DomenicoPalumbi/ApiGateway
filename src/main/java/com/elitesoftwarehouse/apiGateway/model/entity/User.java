@@ -16,6 +16,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name="username", nullable=false, unique=true)
     private String username;
 
@@ -24,6 +25,9 @@ public class User implements Serializable {
 
     @Column(name="email", nullable=false, unique=true)
     private String email;
+
+    @Column(name="role", nullable=false)
+    private String role;
 
     @Column(name="first_name", nullable=false)
     private String firstName;
@@ -35,13 +39,15 @@ public class User implements Serializable {
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
         this.email = userDto.getEmail();
+        this.role =userDto.getRole();
         this.firstName = userDto.getFirstName();
         this.lastName = userDto.getLastName();
     }
-    public User(String username, String password, String email, String firstName, String lastName) {
+    public User(String username, String password, String role ,String email, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -96,5 +102,13 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
